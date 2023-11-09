@@ -1,0 +1,70 @@
+﻿@model IEnumerable<TheShelf.Model.Dtos.BookDto>
+
+@{
+    ViewData["Title"] = "BookList";
+}
+
+<div class="container-fluid">
+    <h1>Book List</h1>
+
+    <p>
+        <a asp-action="Create" class="btn btn-primary">Create New</a>
+    </p>
+
+    <table class="table table-striped">
+        <thead class="table-header">
+            <tr>
+                <th>Book ID</th>
+                <th>ISBN</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Author</th>
+                <th>Publisher</th>
+                <th>Year Published</th>
+                <th>Available</th>
+                <th>Image</th>
+                <th>Date Added</th>
+                <th>Category</th>
+                <th>Genre</th>
+                <th>Added By ID</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Isbn)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Author)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Publisher)</td>
+                    <td>@Html.DisplayFor(modelItem => item.YearPublished)</td>
+                    <td>
+                        @if (item.IsAvailable)
+                        {
+                            <span class="text-success">Yes</span>
+                        }
+                        else
+                        {
+                            <span class="text-danger">No</span>
+                        }
+                    </td>
+                    <td>
+                        <img src="@item.ImageUrl" alt="Book Cover" class="book-image" />
+                    </td>
+                    <td>@Html.DisplayFor(modelItem => item.DateAdded)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Category)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Genre)</td>
+                    <td>@Html.DisplayFor(modelItem => item.AddedById)</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Details</a>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

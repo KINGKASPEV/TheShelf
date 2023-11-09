@@ -1,0 +1,24 @@
+﻿@model TheShelf.Model.Dtos.PhotoToAddDto
+
+<h2>Update Book Image</h2>
+@if (ViewData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@ViewData["ErrorMessage"]</div>
+}
+
+<form asp-controller="Book" asp-action="UpdateImage" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="photoFile">Select an image:</label>
+        <input type="file" name="photoFile" id="photoFile" class="form-control-file" accept="image/*" required />
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Upload Image</button>
+    </div>
+</form>
+
+@if (Model != null)
+{
+    <div class="alert alert-success">
+        Image updated successfully. <a href="@Model">View Image</a>
+    </div>
+}

@@ -1,0 +1,112 @@
+﻿@model TheShelf.Model.Dtos.CreateBookDto
+@using TheShelf.Model.Enums
+
+@{
+	ViewData["Title"] = "Create";
+}
+
+<div class="container">
+	<h1>Create</h1>
+
+	<div class="row">
+		<div class="col-md-6">
+			<form asp-action="Create" method="post" enctype="multipart/form-data">
+				<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+				<div class="form-group">
+					<label asp-for="Id">Book ID:</label>
+					<input asp-for="Id" class="form-control" placeholder="Enter Book ID" />
+					<span asp-validation-for="Id" class="text-danger"></span>
+				</div>
+
+				<div class="form-group">
+					<label asp-for="Isbn">ISBN:</label>
+					<input asp-for="Isbn" class="form-control" placeholder="Enter ISBN" />
+					<span asp-validation-for="Isbn" class="text-danger"></span>
+				</div>
+
+				<div class="form-group">
+					<label asp-for="Title">Title:</label>
+					<input asp-for="Title" class="form-control" placeholder="Enter the book title" />
+					<span asp-validation-for="Title" class="text-danger"></span>
+				</div>
+
+				<div class="form-group">
+					<label asp-for="Description">Description:</label>
+					<textarea asp-for="Description" class="form-control" rows="4" placeholder="Enter the book description"></textarea>
+					<span asp-validation-for="Description" class="text-danger"></span>
+				</div>
+
+				<div class="form-group">
+					<label asp-for="Author">Author:</label>
+					<input asp-for="Author" class="form-control" placeholder="Enter the authors' name " />
+					<span asp-validation-for="Author" class="text-danger"></span>
+				</div>
+
+				<div class="form-group">
+					<label asp-for="Publisher">Publisher:</label>
+					<input asp-for="Publisher" class="form-control" placeholder="Enter the publisher's name'" />
+					<span asp-validation-for="Publisher" class="text-danger"></span>
+				</div>
+
+				<div class="form-group">
+					<label asp-for="YearPublished">Year of Publication:</label>
+					<input asp-for="YearPublished" class="form-control" />
+					<span asp-validation-for="YearPublished" class="text-danger"></span>
+				</div>
+
+				<div class="form-group">
+					<label asp-for="IsAvailable">Is Available:</label>
+					<input asp-for="IsAvailable" type="checkbox" class="form-check-input" />
+					<span asp-validation-for="IsAvailable" class="text-danger"></span>
+				</div>
+
+				<div class="form-group">
+					<label asp-for="ImageUrl">Image URL:</label>
+					<input asp-for="ImageUrl" class="form-control" />
+					<span asp-validation-for="ImageUrl" class="text-danger"></span>
+				</div>
+
+				<div class="form-group">
+					<label asp-for="DateAdded">Date Added:</label>
+					<input asp-for="DateAdded" class="form-control" type="date" />
+					<span asp-validation-for="DateAdded" class="text-danger"></span>
+				</div>
+
+				<div class="form-group">
+					<label asp-for="Category">Category:</label>
+					<select asp-for="Category" asp-items="Html.GetEnumSelectList<BookCategory>()" class="form-control">
+						<option value="">Select a category</option>
+					</select>
+					<span asp-validation-for="Category" class="text-danger"></span>
+				</div>
+
+				<div class="form-group">
+					<label asp-for="Genre">Genre:</label>
+					<select asp-for="Genre" asp-items="Html.GetEnumSelectList<Genre>()" class="form-control">
+						<option value="">Select a genre</option>
+					</select>
+					<span asp-validation-for="Genre" class="text-danger"></span>
+				</div>
+
+				<div class="form-group">
+					<label asp-for="AddedById">Added by ID:</label>
+					<input asp-for="AddedById" class="form-control" placeholder="please enter your ID" />
+					<span asp-validation-for="AddedById" class="text-danger"></span>
+				</div>
+
+				<div style="margin-bottom: 20px;"></div>
+
+				<div class="form-group">
+					<input type="submit" value="Create" class="btn btn-primary" />
+					<a asp-action="BookList" class="btn btn-secondary" style="margin-left: 10px;">Back to List</a>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}
